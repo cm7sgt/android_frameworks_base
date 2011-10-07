@@ -167,9 +167,19 @@ status_t EventHub::getAbsoluteAxisInfo(int32_t deviceId, int axis,
         axis = ABS_Y;
     }
     else
-    if (ABS_Y == axis);
+    if (ABS_Y == axis)
     {
         axis = ABS_X;
+    }
+    else
+    if (ABS_MT_POSITION_X == axis)
+    {
+        axis = ABS_MT_POSITION_Y;
+    }
+    else
+    if (ABS_MT_POSITION_Y == axis)
+    {
+        axis = ABS_MT_POSITION_X;
     }
 #endif
     if(ioctl(device->fd, EVIOCGABS(axis), &info)) {
